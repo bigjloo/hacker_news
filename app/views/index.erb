@@ -1,0 +1,45 @@
+<div class="container">
+  <h1>Welcome to Hacker News!</h1>
+  <nav>
+    <a href="/post">All</a>
+    <a href="">Comments</a>
+    <a href="">Show</a>
+    <a href="/user/login">Submit</a>
+  </nav>
+  </form>
+  <% if logged_in?%>
+    <form action= "/session/logout" method= "get">
+      <input type= "submit" value= "Log out">
+    </form>
+  <% end %>
+  <ol>
+  <% @all_post.each do |post| %>
+  <li>
+    <form action= "/postvote/<%= post.id %>/new" method= "post">
+      <input type= "submit" name= "vote" value= "up">
+    </form>
+    <div id="voteup">UP</div>
+    <div id="votecount"></div>
+    <div id="votedown">DOWN</div>
+    votes: <%= post.postvotes.sum(:count) %>
+    <form action= "/postvote/<%= post.id %>/new" method= "post">
+      <input type= "submit" name= "vote" value= "down">
+    </form>
+    <a href= "/post/<%= post.id %>"><%= post.title%></a><br>
+    by: <%= post.user.username%>
+    // time from create //
+    | <a href= "/post/<%= post.id %>/comments"><%= post.comments.count %></a> comments
+    <% end %>
+  </li>
+  </ol>
+</div>
+
+<script>
+  $(document).ready(function(){
+
+    $('#voteup').on("click", function(){
+      //increase vote to +1
+      $('#voutecount')
+    })
+  })
+</script>

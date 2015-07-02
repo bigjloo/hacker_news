@@ -1,0 +1,22 @@
+<div class= 'container'>
+  <a href= "/">Hacker News</a>
+  <div id= "title"> USER PERSONAL PAGE</div>
+  <div id= "welcome">Welcome <%= current_user.username %></div>
+  <a href= "/post/new">NEW POST</a>
+  <a href= "/user/<%= @user.id %>/posts">ALL POST</a>
+  <a href= "/user/<%= @user.id %>/comments">ALL COMMENTS</a>
+  <div id="user_posts">
+    <% current_user.posts.reverse.each do |post| %>
+        <%= post.title %></a><br><br>
+        <%= post.content %>
+        <%= post.created_at %><br><br>
+        <% post.comments.each do |comment| %>
+          <%= comment.user_comment %><br>
+          by: <%= current_user.username %><br>
+        <% end %>
+    <% end %>
+  </div>
+  <form action= "/session/logout" method= "get">
+    <input type= "submit" value= "Log out">
+  </form>
+</div>

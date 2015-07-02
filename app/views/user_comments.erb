@@ -1,0 +1,8 @@
+<div class= 'container'>
+  <%= @user.username %><br>
+  <% @user.comments.reverse.each do |comment|%>
+    <a href= "/post/<%= comment.post.id %>"><%= comment.post.title %></a><br>
+    <%= comment.user_comment %><br>
+    ---------------------------
+  <% end %>
+</div>

@@ -1,0 +1,19 @@
+<div>
+  <ol>
+  <% @all_post.each do |post| %>
+  <li>
+    <form action= "/postvote/<%= post.id %>/new" method= "post">
+      <input type= "submit" name= "vote" value= "up">
+    </form>
+    votes: <%= post.postvotes.sum(:count) %>
+    <form action= "/postvote/<%= post.id %>/new" method= "post">
+      <input type= "submit" name= "vote" value= "down">
+    </form>
+    <a href= "/post/<%= post.id %>"><%= post.title%></a><br>
+    by: <%= post.user.username%>
+    // time from create //
+    | <a href= ""><%= post.comments.count %></a> comments
+    <% end %>
+  </li>
+  </ol>
+</div>

@@ -1,0 +1,8 @@
+<div class= 'container'>
+  Title: <%= @post.title %><br><br>
+  <%= @post.content %><br><br>
+  <% @post.comments.each do |comment| %>
+    <%= comment.user_comment %><b>
+    by : <%= comment.user.username %></b>
+  <% end %>
+</div>
